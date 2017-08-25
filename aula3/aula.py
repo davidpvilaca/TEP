@@ -81,12 +81,8 @@ def main_tarefa():
             
     for i_quem in range(len(results)):
         q = results[i_quem]
-        maior = 0
-        i = 0
-        for j_result in range(len(q)):
-            if (q[j_result] > maior):
-                maior = q[j_result]
-                i = j_result
+        maior = np.amax(q)
+        i = q.index(maior)
         print('QUEM ' + str(i_quem+1) + ' é ' + images[i]['name'])
             
     # plt.barh(range(len(results1)), results1, 0.5, color='red')
