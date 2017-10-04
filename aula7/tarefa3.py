@@ -25,8 +25,8 @@ def track(image):
     hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
 
     # Threshold the HSV image for only green colors
-    lower_green = np.array([40,70,70])
-    upper_green = np.array([80,200,200])
+    lower_green = np.array([40,180,100])
+    upper_green = np.array([60,230,180])
 
     # Threshold the HSV image to get only green colors
     mask = cv2.inRange(hsv, lower_green, upper_green)
