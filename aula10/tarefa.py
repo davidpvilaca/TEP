@@ -20,7 +20,7 @@ def threshold(img):
 def getContours(img):
     return cv2.findContours(img.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[1]
 
-img = cv2.imread('mao2.jpg')
+img = cv2.imread('mao1.jpg')
 img_g = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 thresh = threshold( gaussianBlur(img_g) )
 contours = getContours(thresh)
@@ -53,7 +53,7 @@ points = []
 def addPoints(point):
     add = True
     for p in points:
-        if (abs(p[0] - point[0]) < 50 and abs(p[1] - point[1]) < 50):
+        if (abs(p[0] - point[0]) <= 50 and abs(p[1] - point[1]) <= 50):
             add = False
     if (add):
         points.append(point)
@@ -64,7 +64,7 @@ for i in range(defects.shape[0]):
     end = tuple(cnt[e][0])
     far = tuple(cnt[f][0])
     cv2.line(res,start, end, [0,255,0], 2)
-    if (math.sqrt( ((centr[0]-far[0])**2) + ((centr[1]-far[1])**2) ) > 100 and far[1] < centr[1]):
+    if (math.sqrt( ((centr[0]-far[0])**2) + ((centr[1]-far[1])**2) ) > 150 and far[1] < centr[1]):
         cv2.circle(res,far,6,[0,0,0],-1)
         addPoints(far)
             
