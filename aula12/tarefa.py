@@ -36,7 +36,7 @@ def segment_on_dt(a, img):
     _, dt = cv2.threshold(dt, 180, 255, cv2.THRESH_BINARY)    
     lbl, ncc = label(dt)
     cv2.imwrite('result2.png', lbl)
-    contours1 = cv2.findContours(lbl.astype(np.uint8), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[1]
+    contours1 = cv2.findContours(lbl.astype(np.uint8), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[1]
     lbl = lbl * (255/ncc)
     lbl[border == 255] = 255
     cv2.imwrite('result3.png', lbl)
@@ -49,7 +49,7 @@ def segment_on_dt(a, img):
     seg = 255 - lbl
     
     showImg(seg, plt.cm.Greys_r)
-    contours2 = cv2.findContours(seg, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[1]
+    contours2 = cv2.findContours(seg, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[1]
 
     return seg, np.max([len(contours1), len(contours2)])
 
